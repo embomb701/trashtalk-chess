@@ -533,6 +533,7 @@
       game: $('#screen-game')
     },
     globalMuteBtn: $('#globalMuteBtn'),
+    inGameMuteBtn: $('#inGameMuteBtn'),
     playBtn: $('#playBtn'),
     settingsBtn: $('#settingsBtn'),
     progressBtn: $('#progressBtn'),
@@ -642,12 +643,15 @@
       toast('Save reset. Back to square one.');
     });
 
-    elements.globalMuteBtn.addEventListener('click', () => {
+    elements.globalMuteBtn.addEventListener('click', toggleVoice);
+    elements.inGameMuteBtn.addEventListener('click', toggleVoice);
+
+    function toggleVoice() {
       state.save.settings.voiceEnabled = !state.save.settings.voiceEnabled;
       persistSave();
       applySettingsToControls();
       updateGlobalMuteLabel();
-    });
+    }
 
     elements.menuBtn.addEventListener('click', () => switchScreen('menu'));
     elements.resignBtn.addEventListener('click', () => {
@@ -1641,7 +1645,13 @@
   }
 
   function updateGlobalMuteLabel() {
-    elements.globalMuteBtn.textContent = state.save.settings.voiceEnabled ? '🔊 Voice' : '🔇 Voice';
+    const enabled = state.save.settings.voiceEnabled;
+    const label = enabled ? '🔊 Voice' : '🔇 Muted';
+    [elements.globalMuteBtn, elements.inGameMuteBtn].forEach(button => {
+      button.textContent = label;
+      button.setAttribute('aria-pressed', String(!enabled));
+      button.title = enabled ? 'Mute voice' : 'Enable voice';
+    });
   }
 
   function toast(message) {
