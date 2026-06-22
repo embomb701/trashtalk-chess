@@ -81,6 +81,22 @@
             </label>
 
             <label class="field">
+              <span>Voice Character</span>
+              <select id="voiceProfile">
+                <option value="sultry">Sultry &amp; Dangerous</option>
+                <option value="confident">Cool &amp; Confident</option>
+                <option value="vicious">Fast &amp; Vicious</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Female Voice</span>
+              <select id="voiceName">
+                <option value="auto">Auto-select best available</option>
+              </select>
+            </label>
+
+            <label class="field">
               <span>Voice Rate</span>
               <input id="voiceRate" type="range" min="0.6" max="1.6" step="0.05" />
               <strong id="voiceRateLabel"></strong>
@@ -97,6 +113,8 @@
               <input id="voicePitch" type="range" min="0.7" max="1.5" step="0.05" />
               <strong id="voicePitchLabel"></strong>
             </label>
+
+            <button id="previewVoiceBtn" class="secondary-btn" type="button">Preview Voice</button>
           </div>
 
           <div class="footer-actions menu-nav">
@@ -148,10 +166,6 @@
 
             <div class="board-wrap">
               <canvas id="board" width="720" height="720" aria-label="Chess board"></canvas>
-              <div id="thinkingOverlay" class="thinking-overlay hidden">
-                <div class="spinner"></div>
-                <p>AI is plotting your demise...</p>
-              </div>
               <div id="promotionModal" class="promotion-modal hidden" role="dialog" aria-label="Choose promotion piece">
                 <div class="promotion-card">
                   <h3>Choose promotion</h3>

@@ -290,7 +290,6 @@ input[type="range"] { padding: 0; }
   background: var(--board-light);
   touch-action: manipulation;
 }
-.thinking-overlay,
 .promotion-modal,
 .modal {
   position: fixed;
@@ -300,24 +299,7 @@ input[type="range"] { padding: 0; }
   justify-content: center;
   background: rgba(4,7,13,0.62);
 }
-.thinking-overlay {
-  position: absolute;
-  border-radius: 20px;
-  background: rgba(7, 11, 18, 0.74);
-  backdrop-filter: blur(6px);
-  flex-direction: column;
-  gap: 16px;
-}
 .hidden { display: none !important; }
-.spinner {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 4px solid rgba(255,255,255,0.15);
-  border-top-color: var(--accent-2);
-  animation: spin 1s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
 
 .promotion-card,
 .modal-card {

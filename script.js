@@ -9,9 +9,11 @@
       pieceTheme: 'standard',
       languageMode: 'mature',
       voiceEnabled: true,
-      voiceRate: 1,
+      voiceProfile: 'sultry',
+      voiceName: 'auto',
+      voiceRate: 0.92,
       voiceVolume: 1,
-      voicePitch: 1
+      voicePitch: 1.08
     },
     stats: {
       gamesPlayed: 0,
@@ -214,7 +216,11 @@
         'Settle in. I\'m about to narrate your collapse.',
         'You wanted smoke. I brought a flamethrower.',
         'Hope that opening prep wasn\'t downloaded from a cereal box.',
-        'Standard rules, nonstandard disrespect.'
+        'Standard rules, nonstandard disrespect.',
+        'Take your time, gorgeous. The wrong move will still be wrong later.',
+        'I hope you stretched. Carrying this much false confidence can pull something.',
+        'You have the first move and somehow I already have the advantage.',
+        'Welcome to the board. Your dignity can wait outside.'
       ],
       afterPlayer: [
         'That move had all the grace of a shopping cart crash.',
@@ -224,7 +230,27 @@
         'I\'m trying to decide if that was brave or just stupid.',
         'Every turn you make me believe less in humanity.',
         'You keep volunteering pieces like it\'s charity night.',
-        'I\'ve seen stronger ideas scribbled on napkins.'
+        'I\'ve seen stronger ideas scribbled on napkins.',
+        'That move has the tactical depth of a parking lot puddle.',
+        'You play chess like autocorrect: confidently wrong and never apologizing.',
+        'Was that strategy, or did your finger slip with ambition?',
+        'Keep moving like that and your king is filing for new management.',
+        'Bold move. Not good, but definitely visible from space.',
+        'I love the confidence. It makes the autopsy funnier.'
+      ],
+      aiMove: [
+        'There. I moved slowly so you could pretend you understood it.',
+        'Your turn, gorgeous. Try not to make desperation look so obvious.',
+        'I just improved my position and your anxiety at the same time.',
+        'That move has consequences. I would explain them, but discovery is part of the fun.',
+        'I left you several options. Most of them are humiliating.',
+        'Go ahead, sweetheart. Touch another piece you cannot protect.',
+        'That was foreplay. The tactical violation comes next.',
+        'I know that move looked innocent. So did your opening before it caught fire.',
+        'Your position is begging for mercy in a language your ego cannot translate.',
+        'I moved one piece and somehow lowered your whole board\'s property value.',
+        'Take your time. I enjoy watching bad ideas become commitments.',
+        'Your move. Give me something embarrassing to remember you by.'
       ],
       blunder: [
         'There it is. A fresh, steaming blunder.',
@@ -234,7 +260,13 @@
         'That wasn\'t a mistake. That was a confession.',
         'I didn\'t punish you yet and you already punished yourself.',
         'Spectacular throw. Truly cinematic.',
-        'You just donated evaluation points like a fool with a trust fund.'
+        'You just donated evaluation points like a fool with a trust fund.',
+        'Holy shit. Even your other bad moves are embarrassed by that one.',
+        'That blunder had setup, timing, and a punchline. Unfortunately, you were it.',
+        'You didn\'t miss the tactic. You gave it your home address.',
+        'That move turned a chess game into a public apology.',
+        'Your position just lost value faster than a crypto scam.',
+        'I was planning a trap, but apparently you prefer self-checkout.'
       ],
       capture: [
         'Thanks, I\'ll be taking that.',
@@ -244,7 +276,13 @@
         'That piece died for nothing. Kind of poetic.',
         'You keep feeding me material. I\'m spoiled.',
         'Snip. Another limb off your position.',
-        'You defend like a wet paper bag.'
+        'You defend like a wet paper bag.',
+        'Another piece? At this point I should send you a loyalty card.',
+        'I took that so cleanly it still thinks it belongs to you.',
+        'Your material advantage has entered the witness protection program.',
+        'You guard pieces like a nightclub with no doors.',
+        'That piece lasted about as long as your opening theory.',
+        'I\'m not stealing your pieces. You keep leaving them at the curb.'
       ],
       check: [
         'Check. Start panicking now.',
@@ -254,7 +292,13 @@
         'Check. The noose is tightening.',
         'That king looks nervous. Good.',
         'Check, clown. Find a move if you can.',
-        'I have your king tap-dancing on hot coals.'
+        'I have your king tap-dancing on hot coals.',
+        'Check. Your king has fewer safe spaces than your ego.',
+        'That crown is doing a lot of work for someone this helpless.',
+        'Check, sweetheart. Try breathing through the panic.',
+        'Your king is one bad square away from becoming a historical footnote.',
+        'Check. I knocked politely; your position collapsed anyway.',
+        'The king is running. Finally, one of your pieces has a plan.'
       ],
       promotion: [
         'Promotion. My position just got richer and you got poorer.',
@@ -264,7 +308,11 @@
         'I upgraded. You downgraded the moment you sat down.',
         'Fresh power on the board. Bad news for your survival.',
         'That pawn just got a better career than you.',
-        'Promotion. Now watch me use it to ruin your day.'
+        'Promotion. Now watch me use it to ruin your day.',
+        'A new queen. As if you weren\'t already overwhelmed.',
+        'That pawn crossed the whole board while your strategy stayed home.',
+        'Promotion. I just unlocked the deluxe version of your problem.',
+        'Meet my new queen. She has plans for your evening.'
       ],
       aiWin: [
         'Checkmate. That was cleaner than you deserved.',
@@ -274,7 +322,13 @@
         'Easy money. You never really had this.',
         'I just folded you into a tactical lawn chair.',
         'Game over. You fought like a Wi-Fi signal in a basement.',
-        'Get some sleep. Maybe a stronger brain spawns tomorrow.'
+        'Get some sleep. Maybe a stronger brain spawns tomorrow.',
+        'Checkmate. Your king died surrounded by coworkers who stopped caring.',
+        'I expected resistance. You brought decorative pieces.',
+        'That wasn\'t a game; it was a guided tour of your limitations.',
+        'Checkmate. You had thirty-two pieces and not one good excuse.',
+        'I\'d say you almost had me, but lying after a funeral feels tacky.',
+        'You played like the board owed you an apology.'
       ],
       playerWin: [
         'I hate this, but fine. You earned that one.',
@@ -284,7 +338,11 @@
         'I walked into that one and now I\'m mad about it.',
         'You got me. I feel unclean saying it, but nice game.',
         'I\'ll remember this humiliation. Enjoy your tiny parade.',
-        'Congratulations. You managed not to crumble for once.'
+        'Congratulations. You managed not to crumble for once.',
+        'Fine, you won. Try not to make competence your whole personality.',
+        'You beat me. That smug little silence suits you.',
+        'Well played, asshole. There, enjoy the rare collectible.',
+        'You earned that. I still hate the way you look winning.'
       ],
       draw: [
         'A draw. Nobody wins, but somehow you still look worse.',
@@ -294,7 +352,11 @@
         'Stalemate. Bureaucratic survival, not glory.',
         'A draw is just losing with paperwork.',
         'Neither of us got the full kill. Annoying.',
-        'Fine. Call it a draw. I call it unfinished business.'
+        'Fine. Call it a draw. I call it unfinished business.',
+        'A draw: all that tension and neither of us got satisfaction.',
+        'We split the point. You can keep the emotional damage.',
+        'A draw. Like kissing through a screen door: effort, no payoff.',
+        'Neither side won, but your opening definitely lost.'
       ],
       easyMode: [
         'Level {level}? Cute. Try level 10 if you want adult supervision.',
@@ -337,6 +399,16 @@
         'Interesting choice. I wouldn\'t recommend repeating it.',
         'You\'re making this easier than I expected.',
         'That was brave in the same way jumping in a puddle is sailing.'
+      ],
+      aiMove: [
+        'Your turn. There are good moves available, statistically speaking.',
+        'I improved my position. See if you can say the same.',
+        'That move has a point. You may meet it shortly.',
+        'Your position just got a little more uncomfortable.',
+        'Take your time. The board is not going anywhere.',
+        'I have a plan. You appear to have a collection of hopes.',
+        'Your move. Choose carefully this time.',
+        'That should give you something to worry about.'
       ],
       blunder: [
         'Yikes. That was a big miss.',
@@ -441,6 +513,8 @@
     aiThinking: false,
     lastMove: null,
     banter: [],
+    recentTaunts: [],
+    voices: [],
     voiceAvailable: 'speechSynthesis' in window,
     boardSize: 720,
     gameResult: null,
@@ -473,6 +547,9 @@
     boardTheme: $('#boardTheme'),
     pieceTheme: $('#pieceTheme'),
     voiceEnabled: $('#voiceEnabled'),
+    voiceProfile: $('#voiceProfile'),
+    voiceName: $('#voiceName'),
+    previewVoiceBtn: $('#previewVoiceBtn'),
     voiceRate: $('#voiceRate'),
     voiceRateLabel: $('#voiceRateLabel'),
     voiceVolume: $('#voiceVolume'),
@@ -485,7 +562,6 @@
     board: $('#board'),
     turnIndicator: $('#turnIndicator'),
     levelBadge: $('#levelBadge'),
-    thinkingOverlay: $('#thinkingOverlay'),
     menuBtn: $('#menuBtn'),
     resignBtn: $('#resignBtn'),
     banterLead: $('#banterLead'),
@@ -517,6 +593,8 @@
     switchScreen('menu');
     renderIdleBoard();
     updateGlobalMuteLabel();
+    loadVoices();
+    if (state.voiceAvailable) window.speechSynthesis.addEventListener('voiceschanged', loadVoices);
     window.addEventListener('resize', resizeBoard);
     document.addEventListener('keydown', handleMenuKeyboard);
   }
@@ -602,6 +680,17 @@
       persistSave();
       updateGlobalMuteLabel();
     });
+    elements.voiceProfile.addEventListener('change', () => {
+      state.save.settings.voiceProfile = elements.voiceProfile.value;
+      persistSave();
+    });
+    elements.voiceName.addEventListener('change', () => {
+      state.save.settings.voiceName = elements.voiceName.value;
+      persistSave();
+    });
+    elements.previewVoiceBtn.addEventListener('click', () => {
+      speak('Careful, sweetheart. I can hear your next blunder from here.', true);
+    });
     elements.voiceRate.addEventListener('input', () => {
       state.save.settings.voiceRate = Number(elements.voiceRate.value);
       persistSave();
@@ -658,6 +747,7 @@
     elements.difficulty.value = settings.level;
     elements.languageMode.value = settings.languageMode;
     elements.voiceEnabled.checked = settings.voiceEnabled;
+    elements.voiceProfile.value = settings.voiceProfile;
     elements.voiceRate.value = settings.voiceRate;
     elements.voiceVolume.value = settings.voiceVolume;
     elements.voicePitch.value = settings.voicePitch;
@@ -891,14 +981,12 @@
   function runAiTurn() {
     if (!state.chess || state.chess.game_over()) return;
     state.aiThinking = true;
-    elements.thinkingOverlay.classList.remove('hidden');
     updateTurnLabel();
 
     window.setTimeout(() => {
       const move = getBestAiMove(state.chess, state.save.settings.level);
       if (!move) {
         state.aiThinking = false;
-        elements.thinkingOverlay.classList.add('hidden');
         checkIfGameFinished();
         return;
       }
@@ -909,12 +997,11 @@
       if (verbose.captured) taunt('capture');
       else if (verbose.promotion) taunt('promotion');
       else if (state.chess.in_check()) taunt('check');
-      else taunt('afterPlayer', 0.65);
+      else taunt('aiMove', 0.9);
 
       updateMoveHistory();
       updateCapturedPieces();
       state.aiThinking = false;
-      elements.thinkingOverlay.classList.add('hidden');
       updateTurnLabel();
       renderCurrentBoard();
       checkIfGameFinished();
@@ -1223,9 +1310,20 @@
         if (theme.id === 'neon') drawNeonGlow(row, col, cell, light);
 
         const square = coordsToSquare(row, col);
-        if (state.lastMove && (state.lastMove.from === square || state.lastMove.to === square)) {
-          ctx.fillStyle = 'rgba(255, 247, 122, 0.28)';
+        if (state.lastMove && state.lastMove.from === square) {
+          ctx.fillStyle = 'rgba(95, 227, 208, 0.42)';
           ctx.fillRect(col * cell, row * cell, cell, cell);
+          ctx.strokeStyle = 'rgba(95, 227, 208, 0.95)';
+          ctx.lineWidth = Math.max(3, cell * 0.055);
+          ctx.strokeRect(col * cell + 3, row * cell + 3, cell - 6, cell - 6);
+        }
+
+        if (state.lastMove && state.lastMove.to === square) {
+          ctx.fillStyle = 'rgba(255, 216, 92, 0.48)';
+          ctx.fillRect(col * cell, row * cell, cell, cell);
+          ctx.strokeStyle = 'rgba(255, 216, 92, 0.98)';
+          ctx.lineWidth = Math.max(3, cell * 0.055);
+          ctx.strokeRect(col * cell + 3, row * cell + 3, cell - 6, cell - 6);
         }
 
         if (state.selectedSquare === square) {
@@ -1400,21 +1498,83 @@
   function pickTaunt(category) {
     const language = state.save.settings.languageMode;
     const list = TAUNTS[language][category] || ['I have thoughts. None of them are kind.'];
-    return list[Math.floor(Math.random() * list.length)];
+    const fresh = list.filter(line => !state.recentTaunts.includes(line));
+    const pool = fresh.length ? fresh : list;
+    const line = pool[Math.floor(Math.random() * pool.length)];
+    state.recentTaunts.push(line);
+    state.recentTaunts = state.recentTaunts.slice(-12);
+    return line;
   }
 
   function fillTemplate(template, vars) {
     return template.replace(/\{(\w+)\}/g, (_, key) => vars[key] ?? '');
   }
 
-  function speak(text) {
-    if (!state.voiceAvailable || !state.save.settings.voiceEnabled) return;
+  function loadVoices() {
+    if (!state.voiceAvailable) return;
+    state.voices = window.speechSynthesis.getVoices();
+    const previous = state.save.settings.voiceName || 'auto';
+    elements.voiceName.innerHTML = '<option value="auto">Auto-select best available</option>';
+    state.voices
+      .filter(voice => /^en([_-]|$)/i.test(voice.lang))
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .forEach(voice => {
+        const option = document.createElement('option');
+        option.value = voice.name;
+        option.textContent = `${voiceScore(voice) >= 80 ? '★ ' : ''}${voice.name} (${voice.lang})`;
+        elements.voiceName.appendChild(option);
+      });
+    elements.voiceName.value = state.voices.some(voice => voice.name === previous) ? previous : 'auto';
+  }
+
+  function voiceScore(voice) {
+    const name = voice.name.toLowerCase();
+    const feminineNames = [
+      'aria', 'jenny', 'zira', 'sonia', 'samantha', 'victoria', 'ava', 'emma', 'olivia',
+      'serena', 'karen', 'moira', 'tessa', 'fiona', 'susan', 'hazel', 'libby', 'michelle',
+      'joanna', 'salli', 'kimberly', 'ivy', 'amy', 'nicole', 'ruth', 'danielle', 'denise',
+      'natasha', 'clara', 'veena', 'neera', 'female', 'google us english'
+    ];
+    const masculineNames = ['david', 'mark', 'guy', 'ryan', 'brian', 'joey', 'matthew', 'justin', 'male'];
+    const feminine = feminineNames.reduce((score, candidate, index) => score + (name.includes(candidate) ? 200 - index : 0), 0);
+    const masculine = masculineNames.some(candidate => name.includes(candidate)) ? 500 : 0;
+    return feminine - masculine + (/natural|neural|online/i.test(voice.name) ? 35 : 0) + (voice.localService ? 2 : 0);
+  }
+
+  function chooseVoice() {
+    const requested = state.save.settings.voiceName;
+    if (requested && requested !== 'auto') {
+      const exact = state.voices.find(voice => voice.name === requested);
+      if (exact) return exact;
+    }
+    return state.voices
+      .filter(voice => /^en([_-]|$)/i.test(voice.lang))
+      .map(voice => ({ voice, score: voiceScore(voice) }))
+      .sort((a, b) => b.score - a.score)[0]?.voice || state.voices[0];
+  }
+
+  function speak(text, force = false, attempt = 0) {
+    if (!state.voiceAvailable || (!force && !state.save.settings.voiceEnabled)) return;
     try {
+      if (!state.voices.length && attempt < 8) {
+        loadVoices();
+        window.setTimeout(() => speak(text, force, attempt + 1), 150);
+        return;
+      }
       window.speechSynthesis.cancel();
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = state.save.settings.voiceRate;
+      const profiles = {
+        sultry: { rate: 0.80, pitch: 1.14 },
+        confident: { rate: 1, pitch: 1 },
+        vicious: { rate: 1.13, pitch: 1.03 }
+      };
+      const profile = profiles[state.save.settings.voiceProfile] || profiles.sultry;
+      const voice = chooseVoice();
+      utterance.voice = voice || null;
+      utterance.lang = voice?.lang || 'en-US';
+      utterance.rate = Math.max(0.6, Math.min(1.6, state.save.settings.voiceRate * profile.rate));
       utterance.volume = state.save.settings.voiceVolume;
-      utterance.pitch = state.save.settings.voicePitch;
+      utterance.pitch = Math.max(0.7, Math.min(1.5, state.save.settings.voicePitch * profile.pitch));
       window.speechSynthesis.speak(utterance);
     } catch (error) {
       console.warn('Speech failed.', error);
