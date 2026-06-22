@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TrashTalk Chess - Chess with a mouthy AI that roasts you." />
+  <title>TrashTalk Chess</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="./chess.min.js" defer></script>
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="top-chrome">
+      <div>
+        <div class="eyebrow">BROWSER MVP</div>
+        <h1>TrashTalk Chess</h1>
+      </div>
+      <div class="top-actions">
+        <button id="globalMuteBtn" class="ghost-btn" title="Toggle voice">🔊 Voice</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="screen-menu" class="screen active" aria-label="Main menu">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <p class="badge">Chess with a mouthy AI that roasts you</p>
+            <h2>Outplay the board. Survive the banter.</h2>
+            <p>
+              Standard chess, escalating AI, savage voice taunts, unlockable cosmetics, and persistent progression.
+              GitHub-ready. Vercel-ready. Static and portable.
+            </p>
+          </div>
+          <div class="hero-actions menu-nav">
+            <button id="playBtn" class="primary-btn">Play</button>
+            <button id="settingsBtn" class="secondary-btn">Settings</button>
+            <button id="progressBtn" class="secondary-btn">Unlocks / Progress</button>
+            <button id="quitBtn" class="ghost-btn">Quit</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-settings" class="screen" aria-label="Settings">
+        <div class="panel settings-panel">
+          <div class="panel-header">
+            <h2>Settings</h2>
+            <p>Tune the pain.</p>
+          </div>
+          <div class="settings-grid menu-nav">
+            <label class="field">
+              <span>Difficulty</span>
+              <input id="difficulty" type="range" min="1" max="10" step="1" />
+              <strong id="difficultyLabel"></strong>
+            </label>
+
+            <label class="field">
+              <span>Language Mode</span>
+              <select id="languageMode">
+                <option value="mature">Mature</option>
+                <option value="pg">PG / Clean</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Board Theme</span>
+              <select id="boardTheme"></select>
+            </label>
+
+            <label class="field">
+              <span>Piece Theme</span>
+              <select id="pieceTheme"></select>
+            </label>
+
+            <label class="field checkbox-field">
+              <span>Voice Enabled</span>
+              <input id="voiceEnabled" type="checkbox" />
+            </label>
+
+            <label class="field">
+              <span>Voice Rate</span>
+              <input id="voiceRate" type="range" min="0.6" max="1.6" step="0.05" />
+              <strong id="voiceRateLabel"></strong>
+            </label>
+
+            <label class="field">
+              <span>Voice Volume</span>
+              <input id="voiceVolume" type="range" min="0" max="1" step="0.05" />
+              <strong id="voiceVolumeLabel"></strong>
+            </label>
+
+            <label class="field">
+              <span>Voice Pitch</span>
+              <input id="voicePitch" type="range" min="0.7" max="1.5" step="0.05" />
+              <strong id="voicePitchLabel"></strong>
+            </label>
+          </div>
+
+          <div class="footer-actions menu-nav">
+            <button id="backFromSettings" class="secondary-btn">Back</button>
+            <button id="resetSaveBtn" class="ghost-btn">Reset Save</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-progress" class="screen" aria-label="Progress and unlocks">
+        <div class="panel">
+          <div class="panel-header">
+            <h2>Unlocks & Progress</h2>
+            <p>Your running humiliation ledger.</p>
+          </div>
+
+          <div id="statsSummary" class="stats-summary"></div>
+
+          <div class="unlock-columns">
+            <div>
+              <h3>Board Themes</h3>
+              <div id="boardUnlocks" class="unlock-grid"></div>
+            </div>
+            <div>
+              <h3>Piece Themes</h3>
+              <div id="pieceUnlocks" class="unlock-grid"></div>
+            </div>
+          </div>
+
+          <div class="footer-actions menu-nav">
+            <button id="backFromProgress" class="secondary-btn">Back</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="screen-game" class="screen" aria-label="Game">
+        <div class="game-layout">
+          <div class="game-main">
+            <div class="game-bar">
+              <div>
+                <span id="turnIndicator" class="status-chip">Your move</span>
+                <span id="levelBadge" class="status-chip accent-chip">Level 5</span>
+              </div>
+              <div class="game-bar-actions menu-nav">
+                <button id="menuBtn" class="ghost-btn">Menu</button>
+                <button id="resignBtn" class="danger-btn">Resign</button>
+              </div>
+            </div>
+
+            <div class="board-wrap">
+              <canvas id="board" width="720" height="720" aria-label="Chess board"></canvas>
+              <div id="thinkingOverlay" class="thinking-overlay hidden">
+                <div class="spinner"></div>
+                <p>AI is plotting your demise...</p>
+              </div>
+              <div id="promotionModal" class="promotion-modal hidden" role="dialog" aria-label="Choose promotion piece">
+                <div class="promotion-card">
+                  <h3>Choose promotion</h3>
+                  <div id="promotionChoices" class="promotion-choices"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="sidebar">
+            <div class="panel sidebar-panel">
+              <h3>AI Banter</h3>
+              <div id="banterLead" class="banter-lead">I'm waiting. Try not to disappoint me.</div>
+              <div id="banterLog" class="banter-log"></div>
+            </div>
+
+            <div class="panel sidebar-panel compact-panel">
+              <h3>Move History</h3>
+              <textarea id="moveHistory" readonly></textarea>
+            </div>
+
+            <div class="panel sidebar-panel compact-panel">
+              <h3>Captured Pieces</h3>
+              <div class="capture-row">
+                <span>White lost</span>
+                <div id="capturedWhite" class="capture-icons"></div>
+              </div>
+              <div class="capture-row">
+                <span>Black lost</span>
+                <div id="capturedBlack" class="capture-icons"></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <div id="gameOverModal" class="modal hidden" role="dialog" aria-label="Game over">
+    <div class="modal-card">
+      <div class="panel-header">
+        <h2 id="gameOverTitle">Game Over</h2>
+        <p id="gameOverSubtitle"></p>
+      </div>
+      <div id="gameOverTaunt" class="final-taunt"></div>
+      <div id="unlockNotice" class="unlock-notice hidden"></div>
+      <div id="postGameStats" class="stats-summary small"></div>
+      <div class="footer-actions menu-nav">
+        <button id="rematchBtn" class="primary-btn">Rematch</button>
+        <button id="changeSettingsBtn" class="secondary-btn">Change Settings</button>
+        <button id="backToMenuBtn" class="ghost-btn">Back to Menu</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
