@@ -511,6 +511,8 @@
     legalMoves: [],
     playerPendingPromotion: null,
     aiThinking: false,
+    aiWorker: null,
+    aiRequestId: 0,
     lastMove: null,
     banter: [],
     recentTaunts: [],
@@ -585,6 +587,7 @@
   init();
 
   function init() {
+    initAiWorker();
     bindEvents();
     applySettingsToControls();
     populateThemeSelects();
@@ -991,9 +994,11 @@
     if (!state.chess || state.chess.game_over()) return;
     state.aiThinking = true;
     updateTurnLabel();
+    const expectedFen = state.chess.fen();
 
-    window.setTimeout(() => {
-      const move = getBestAiMove(state.chess, state.save.settings.level);
+    window.setTimeout(async () => {
+      const move = await requestAiMove(expectedFen, state.save.settings.level);
+      if (!state.chess || state.chess.fen() !== expectedFen) return;
       if (!move) {
         state.aiThinking = false;
         checkIfGameFinished();
@@ -1015,6 +1020,42 @@
       renderCurrentBoard();
       checkIfGameFinished();
     }, state.save.settings.level >= 8 ? 240 : 140);
+  }
+
+  function requestAiMove(fen, level) {
+    if (!state.aiWorker) {
+      return Promise.resolve(getBestAiMove(new Chess(fen), level));
+    }
+
+    const id = ++state.aiRequestId;
+    return new Promise(resolve => {
+      const cleanup = () => {
+        state.aiWorker.removeEventListener('message', onMessage);
+        state.aiWorker.removeEventListener('error', onError);
+      };
+      const fallback = () => {
+        cleanup();
+        resolve(getBestAiMove(new Chess(fen), level));
+      };
+      const onMessage = event => {
+        if (event.data.id !== id) return;
+        cleanup();
+        if (event.data.error) {
+          console.warn('AI worker failed; using fallback.', event.data.error);
+          resolve(getBestAiMove(new Chess(fen), level));
+          return;
+        }
+        resolve(event.data.move);
+      };
+      const onError = error => {
+        console.warn('AI worker failed; using fallback.', error);
+        fallback();
+      };
+
+      state.aiWorker.addEventListener('message', onMessage);
+      state.aiWorker.addEventListener('error', onError);
+      state.aiWorker.postMessage({ id, fen, level, pieceValues: PIECE_VALUES, pst: PST, inf: INF });
+    });
   }
 
   function getBestAiMove(chess, level) {
@@ -1534,6 +1575,15 @@
         elements.voiceName.appendChild(option);
       });
     elements.voiceName.value = state.voices.some(voice => voice.name === previous) ? previous : 'auto';
+  }
+
+  function initAiWorker() {
+    if (!('Worker' in window)) return;
+    try {
+      state.aiWorker = new Worker('./ai-worker.js');
+    } catch (error) {
+      console.warn('AI worker unavailable; using main-thread fallback.', error);
+    }
   }
 
   function voiceScore(voice) {
