@@ -34,6 +34,11 @@ button { cursor: pointer; }
   padding: 18px 0 24px;
 }
 
+body.game-active .app-shell { padding-top: 8px; }
+body.game-active .top-chrome { padding-bottom: 10px; }
+body.game-active .top-chrome h1 { font-size: 1.65rem; }
+body.game-active .top-chrome .eyebrow { display: none; }
+
 .top-chrome {
   display: flex;
   align-items: center;
@@ -277,7 +282,7 @@ input[type="range"] { padding: 0; }
 }
 .board-wrap {
   position: relative;
-  width: min(100%, 860px);
+  width: min(100%, 860px, calc(100dvh - 160px));
   aspect-ratio: 1;
 }
 #board {

@@ -596,6 +596,7 @@
     loadVoices();
     if (state.voiceAvailable) window.speechSynthesis.addEventListener('voiceschanged', loadVoices);
     window.addEventListener('resize', resizeBoard);
+    window.visualViewport?.addEventListener('resize', resizeBoard);
     document.addEventListener('keydown', handleMenuKeyboard);
   }
 
@@ -824,6 +825,7 @@
 
   function switchScreen(screen) {
     state.screen = screen;
+    document.body.classList.toggle('game-active', screen === 'game');
     Object.keys(elements.screens).forEach(key => elements.screens[key].classList.toggle('active', key === screen));
     state.menuFocusIndex = 0;
     if (screen === 'game') {
@@ -834,8 +836,15 @@
 
   function resizeBoard() {
     const wrap = elements.board.parentElement;
-    const size = Math.floor(Math.min(wrap.clientWidth || 720, window.innerWidth < 800 ? window.innerWidth - 22 : 860));
-    state.boardSize = Math.max(320, size);
+    wrap.style.width = '';
+    const viewportHeight = window.visualViewport?.height || window.innerHeight;
+    const boardTop = Math.max(0, wrap.getBoundingClientRect().top);
+    const availableHeight = viewportHeight - boardTop - 18;
+    const availableWidth = wrap.clientWidth || 720;
+    const mobileWidth = window.innerWidth - (window.innerWidth < 800 ? 22 : 0);
+    const size = Math.floor(Math.min(availableWidth, mobileWidth, availableHeight, 860));
+    state.boardSize = Math.max(240, size);
+    wrap.style.width = `${state.boardSize}px`;
     elements.board.width = state.boardSize;
     elements.board.height = state.boardSize;
     renderCurrentBoard();
